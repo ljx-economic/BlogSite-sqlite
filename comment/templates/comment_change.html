@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{# 页面标题 #}
+{% block title %}
+修改评论
+{% endblock %}
+
+{# 页面内容 #}
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-xs-10 col-sm-8 col-xs-offset-1 col-sm-offset-2">
+			<form action="" method="POST">
+				{% csrf_token %}
+				<div>
+					<label for="id_text">评论内容</label>
+					<div class="form-group">
+						<textarea id="id_text" name="text" class="form-control" rows="12" required placeholder="请在此处写评论内容">{{comment.text}}</textarea>
+					</div>
+				</div>
+				<br><a href="{% url 'comment_delete' comment.id %}" class="btn btn-danger pull-left">删除</a>
+				<input type="submit" name="save" value="保存" class="btn btn-primary pull-right">
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

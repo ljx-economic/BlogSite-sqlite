@@ -1,0 +1,13 @@
+{% extends 'blog_list.html' %}
+
+{# 页面标题 #}
+{% block title %}
+{{blog_type.type_name}}
+{% endblock %}
+
+{% block blog_list_title %}
+<h4>分类：{{blog_type.type_name}}（一共有{{page_of_blogs.paginator.count}}篇博客）</h4>
+<a href="/blog/{{blog_type.author}}">查看{{blog_type.author}}的全部博客</a>
+{% endblock %}
+
+{# 页面内容用 blog_list.html #}

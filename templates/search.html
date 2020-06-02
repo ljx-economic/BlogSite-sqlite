@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{# 页面标题 #}
+{% block title %}
+我的网站
+{% endblock %}
+
+{# 页面内容 #}
+{% block content %}
+	<link rel="stylesheet" href="/static/blog/blog_list.css">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-lg-8 col-lg-offset-2">
+				{% if search_word == '' %}
+					<h3>您没有搜索任何内容</h3>
+				{% else %}
+					<h3>搜索“{{ search_word }}”，找到{{ search_blogs_count }}个结果</h3>
+					<hr>
+					{% for blog in page_of_blogs %}
+						<div class="blog">
+						<h3><a href="{% url 'blog_detail' blog.id %}">{{blog.title}}</a></h3>
+						<p class="blog-info">
+							<span class="glyphicon glyphicon-tag" aria-hidden="true">
+								<a href="/blog/type/{{blog.blog_type.pk}}">{{blog.blog_type}}</a>
+							</span>
+							<span class="glyphicon glyphicon-user" aria-hidden="true">
+								<a href="{% url 'blog_list' blog.author %}">{{blog.author}}</a>
+							</span>
+							<span class="glyphicon glyphicon-time" aria-hidden="true">
+								{{blog.created_time|date:"Y-m-d"}}
+							</span>
+							&nbsp;&nbsp;<span>阅读({{blog.readnum_function}})</span>
+						</p>
+						<p>{{blog.content|striptags|truncatechars:20}}</p>
+						</div>
+					{% empty %}
+						<p>搜索不到任何内容</p>
+					{% endfor %}
+				{% endif %}		
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-8 col-lg-8 col-lg-offset-2">
+				<nav aria-label="Page navigation"><!--分页器-->
+					  <ul class="pagination">
+						<li>
+						{# 上一页 #}
+						{%if page_of_blogs.has_previous %}
+						  <a href="{%url 'search' %}?wd={{search_word}}&page={{page_of_blogs.previous_page_number}}" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+						  </a>
+						{% else %}
+						{% endif %}
+						</li>
+						{# 全部页码 #}
+						{% for page_num in page_of_blogs.paginator.page_range %}
+							{% if page_num == page_of_blogs.number %}
+							<li class="active"><span>{{page_num}}</span></li>
+							{% else %}
+							<li><a href="{%url 'search' %}?wd={{search_word}}&page={{page_num}}">{{page_num}}</a></li>
+							{% endif %}
+						{% endfor %}
+						<li>
+						{# 下一页 #}
+						{%if page_of_blogs.has_next %}
+						  <a href="{%url 'search' %}?wd={{search_word}}&page={{page_of_blogs.next_page_number}}" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						  </a>
+						{% else %}
+						{% endif %}
+						</li>
+					  </ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{# 页面标题 #}
+{% block title %}
+博客类型管理
+{% endblock %}
+
+{# 页面内容 #}
+{% block content %}
+<div class="col-sm-10 col-sm-offset-1">
+	<div>
+		<h2>选择博客类型来修改</h2>
+		<a href="{% url 'blog_type_add' %}" class="btn btn-primary pull-right">增加博客类型</a>
+	</div>
+	<form method="post">
+		{% csrf_token %}
+		<div class="results">
+			<table class="table table-striped">
+			<thead>
+			<tr>
+				<th><div class="text">博客类型</div></th>
+				<th><div class="text">博客数量</div></th>
+				<th><div class="text">用户</div></th>
+			</tr>
+			</thead>
+			
+			<tbody>
+			{% for blog_type in my_blog_types %}
+			<tr>
+				<th><a href="{% url 'blog_type_change' blog_type.id%}">{{blog_type.type_name}}</a></th>
+				<td>{{blog_type.blog_count}}</td>
+				<td>{{blog_type.author}}</td>
+			</tr>
+			{% empty %}
+				<td>暂无信息</td>
+				<td>暂无信息</td>
+				<td>暂无信息</td>
+			{% endfor %}
+			</tbody>
+			</table>
+		</div>
+	</form>
+	<p>{{count}}个博客类型</p><br><br>
+</div>
+{% endblock %}

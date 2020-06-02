@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{# 页面标题 #}
+{% block title %}
+个人中心
+{% endblock %}
+
+{# 页面内容 #}
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-lg-8">
+				<div class="panel panel-default">
+					<div class="panel-heading"><h4>个人信息</h4></div>
+					<div class="panel-body">
+						<form action="" method="POST">
+							{% csrf_token %}
+							{# change_info_form #}
+							{% for field in change_info_form %}
+							<label for="{{field.id_for_label}}">{{field.label}}</label>
+							{{field}}
+							<p class="text-danger">{{field.errors.as_text}}</p>
+							{% endfor %}
+							<br>
+							<input type="submit" value="修改" class="btn btn-danger pull-right">
+						</form>
+					</div>
+				</div>	
+				
+			</div>
+			<div class="col-sm-4 col-lg-4">
+				<div class="panel panel-default">
+					<div class="panel-heading"><h4>其他修改操作</h4></div>
+					<div class="panel-body">
+						<ul class="blog-types">
+							<a href="{% url 'change_password' %}">修改密码</a>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+{% endblock %}

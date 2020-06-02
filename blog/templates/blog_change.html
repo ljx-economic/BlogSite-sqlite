@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{# 页面标题 #}
+{% block title %}
+修改博客
+{% endblock %}
+
+{# 页面内容 #}
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-xs-10 col-sm-8 col-xs-offset-1 col-sm-offset-2">
+			<form action="" method="POST">
+				{% csrf_token %}
+				<div class="input-group">
+					<label for="id_title">博客标题</label>
+					<input type="text" name="title" required placeholder="请输入博客标题" maxlength="30" id="id_title" class="form-control" value="{{blog.title}}" />
+				</div><br>
+				<div class="input-group">
+					<label for="id_blog_type">博客类型</label>
+					<select class="form-control" name="blog_type" id="id_blog_type" required>
+						{% for blog_type in blog_types %}
+							{% if blog.blog_type.id is blog_type.id %}
+								<option value ="{{blog_type.id}}" selected="selected">{{blog_type.type_name}}</option>
+							{% else %}
+								<option value ="{{blog_type.id}}">{{blog_type.type_name}}</option>
+							{% endif %}
+						{% empty %}
+						{% endfor %}
+					</select>
+					<a href="{% url 'blog_type_add' %}" class="pull-right"><span class="glyphicon glyphicon-plus" aria-hidden="true">增加</span></a>
+				</div><br>
+				<div>
+					<label for="id_content">博客内容</label>
+					<div class="form-group">
+						<textarea id="id_content" name="content" class="form-control" rows="12" required placeholder="请在此处写博客内容">{{blog.content}}</textarea>
+					</div>
+				</div>
+				<br><a href="{% url 'blog_delete' blog.id %}" class="btn btn-danger pull-left">删除</a>
+				<input type="submit" name="save" value="保存" class="btn btn-primary pull-right">
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

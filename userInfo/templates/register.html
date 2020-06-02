@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{# 页面标题 #}
+{% block title %}
+我的网站|注册
+{% endblock %}
+
+{% block nav_blog_active %}
+active
+{% endblock %}
+
+{# 页面内容 #}
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-10 col-sm-4 col-xs-offset-1 col-sm-offset-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						 <h3 class="panel-title">注册</h3>
+					</div>
+					 <div class="panel-body">
+						 <form action="" method="POST">
+							{% csrf_token %}
+							{# reg_form #}
+							{% for field in reg_form %}
+							<label for="{{field.id_for_label}}">{{field.label}}</label>
+							{{field}}
+							<p class="text-danger">{{field.errors.as_text}}</p>
+							{% endfor %}
+							<br>
+							<!--span class="pull-left text-danger">{{reg_form.non_field_errors}}</span-->
+							<input type="submit" value="注册" class="btn btn-danger pull-right">
+						</form>
+					 </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<link rel="stylesheet" href="/static/home.css">
+{% endblock %}

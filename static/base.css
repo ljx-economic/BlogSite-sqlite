@@ -1,0 +1,27 @@
+	*{
+		margin:0;
+		padding:0;
+		font-family:"微软雅黑";
+	}
+	body{
+		margin-top:70px!important;
+	}
+	/*
+	div.nav{
+		background-color:#eee;
+		border-bottom:1px solid #ccc;
+	}
+	div.nav a.logo{
+		display:inline-block;
+	}
+	div.nav a{
+		text-decoration:none;
+		color:#000;
+		padding:10px 10px;
+	}*/
+	.search-form button[type="submit"]{
+		background: none;
+		border: none;
+		margin-left: -3em;
+		color: #aaa;
+	}

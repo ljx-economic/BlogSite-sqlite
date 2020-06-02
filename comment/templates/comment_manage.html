@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{# 页面标题 #}
+{% block title %}
+评论管理
+{% endblock %}
+
+{# 页面内容 #}
+{% block content %}
+<div class="col-sm-10 col-sm-offset-1">
+	<div>
+		<h2>选择评论来修改</h2>
+	</div>
+	<form method="post">
+		{% csrf_token %}
+		<div class="results">
+			<table class="table table-striped">
+			<thead>
+			<tr>
+				<th><div class="text">博客标题</div></th>
+				<th><div class="text">评论内容</div></th>
+				<th><div class="text">评论人</div></th>
+				<th><div class="text">评论时间</div></th>
+				<th><div class="text">父级评论</div></th>
+				<th><div class="text">根级评论</div></th>
+			</tr>
+			</thead>
+			
+			<tbody>
+			{% for comment in my_comments %}
+			<tr>
+				<th><a href="{% url 'comment_change' comment.id %}">{{comment.comment_blog}}</a></th>
+				<td>{{comment.text}}</td>
+				<td>{{comment.user}}</td>
+				<td>{{comment.comment_time}}</td>
+				<td>{{comment.parent}}</td>
+				<td>{{comment.root}}</td>
+			</tr>
+			{% empty %}
+				<td>暂无信息</td>
+				<td>暂无信息</td>
+				<td>暂无信息</td>
+				<td>暂无信息</td>
+				<td>暂无信息</td>
+				<td>暂无信息</td>
+			{% endfor %}
+			</tbody>
+			</table>
+		</div>
+	</form>
+	<p>{{count}}条评论</p><br><br>
+</div>
+{% endblock %}

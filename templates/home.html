@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{# 页面标题 #}
+{% block title %}
+我的网站|首页
+{% endblock %}
+
+{% block nav_home_active %}
+active
+{% endblock %}
+
+{# 页面内容 #}
+{% block content %}
+	<div class="home-content">
+		<p class="content">用力活着用力爱哪怕肝脑涂地</p>
+		<p class="content">不求任何人满意只要对得起自己</p>
+		<p class="content">关于理想我从来没选择放弃</p>
+		<p class="content">即使在灰头土脸的日子里</p>
+	</div>
+	<link rel="stylesheet" href="/static/home.css">
+{% endblock %}

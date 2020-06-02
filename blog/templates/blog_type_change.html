@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{# 页面标题 #}
+{% block title %}
+修改博客类型
+{% endblock %}
+
+{# 页面内容 #}
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-xs-10 col-sm-8 col-xs-offset-1 col-sm-offset-2">
+			<form action="" method="POST">
+				{% csrf_token %}
+				<div class="input-group">
+					<label for="id_blog_type">博客类型</label>
+					<input type="text" name="blog_type" value="{{blog_type.type_name}}" required placeholder="请输入博客类型" maxlength="30" id="id_blog_type" class="form-control" />
+				</div><br>
+				<br><a href="{% url 'blog_type_delete' blog_type.id %}" class="btn btn-danger pull-left">删除</a>
+				<input type="submit" value="保存" class="btn btn-primary pull-right">
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

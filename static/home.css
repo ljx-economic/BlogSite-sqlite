@@ -1,0 +1,13 @@
+div.home-content{
+	width:50%;
+	margin:auto;
+	font-size:200%;
+	position:absolute;
+	left:50%;
+	top:50%;
+	transform:translate(-50%,-50%);
+}
+p.content{
+	text-align:center;
+	font-family:"微软雅黑";
+}
