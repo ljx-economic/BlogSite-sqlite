@@ -25,7 +25,7 @@ SECRET_KEY = 'd59co^y3d4ue_g3_p@@#k^*g!e^q8==@vu1tyx@i=n_esai01c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django.nat123.fun','127.0.0.1']
+ALLOWED_HOSTS = ['django.nat123.fun','127.0.0.1','49.235.199.52','yourblogs.cn']
 
 
 # Application definition
