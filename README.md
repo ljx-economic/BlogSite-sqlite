@@ -1,2 +1,1 @@
-# BlogSite-sqlite
-后台Django，数据库sqlite
+ --story=1002091 --user=李金鑫 描述
